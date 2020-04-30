@@ -1,0 +1,20 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: eureka-logging
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://127.0.0.1:${server.port}/eureka/
+
+api:
+  boot:
+    # ApiBoot Logging 日志组件配置
+    logging:
+      show-console-log: true
+      # 控制台日志美化
+      format-console-log-json: true    
+    

@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: apiboot-request-logs
+  datasource:
+    url: jdbc:mysql://localhost:3306/globallogging?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=UTF-8
+    password: root
+    username: root
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+  http:
+    converters:
+      preferred-json-mapper: fastJson
+server:
+  port: 8080
+  
+api:
+  boot:
+    # ApiBoot Logging 日志组件配置
+    logging:
+      show-console-log: true
+      # 控制台日志美化
+      format-console-log-json: true
+      # 修改每间隔10秒执行一次上报日志
+      report-interval-second: 10
+      # 修改每次上报2条请求日志
+      report-number-of-request-log: 100
+      # 从服务注册中心中获取指定serviceID
+      discovery:
+      # Logging Admin ServiceID对应Logging Admin服务的spring.application.name属性配置
+        service-id: sample-logging-admin
+        username: admin
+        password: admin123
+      # 配置Logging Admin地址
+      admin:
+      #  用户名：user，密码：123456
+#        server-address: admin:admin123@127.0.0.1:8081
+        server-address: sample-logging-admin
+        format-console-log-json: true
+        
+    
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/

@@ -1,0 +1,42 @@
+# 服务名称
+spring:
+  application:
+    # 服务名称
+    name: sample-logging-admin
+   
+  # 整合Spring Security，配置内存用户
+  security:
+    user:
+      name: admin
+      password: admin123
+  # 数据源相关配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/globallogging?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
+# 服务端口号
+server:
+  port: 8081
+#在控制台上打印日志
+api:
+  boot:
+    logging:
+      show-console-log: true
+      # 控制台日志美化
+      format-console-log-json: true    
+      # Logging Admin相关配置
+      admin:
+        # 控制台显示采集的日志信息
+        show-console-report-log: true
+        format-console-log-json: true
+        
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/     
+
+
+
+        
